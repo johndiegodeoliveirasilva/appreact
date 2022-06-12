@@ -1,9 +1,9 @@
- import React from 'react'
- 
- const Button = () => {
-   return (
-     <button>Enviar</button>
-   )
- }
- 
- export default Button
+import React from 'react'
+
+const Button = () => {
+  return (
+    <button>Click Here</button>
+  )
+}
+
+export default Button
