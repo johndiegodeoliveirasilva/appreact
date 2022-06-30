@@ -1,27 +1,22 @@
 import React from 'react';
-import Footer from './Footer';
-import Form from './Form/Form';
-import Header from './Header';
-
-const Teste = () => {
-  const active = false;
-  if (active) {
-    return <p>Teste</p>;
-  } else {
-    return null;
-  }
-}
 
 const App = () => {
+  const [active, setActve] = React.useState(false);
+  const [data, setData] = React.useState({ name: 'André', year: 30 });
+
+  
+  function handleClick() {
+    setActve(!active)
+  }
+  
   return (
     <>
-      <Teste/>
-      <Header/>
-      <Form/>
-      <Footer/>
+    <p>{data.name}</p>
+    <p>{data.year}</p>
+    <button onClick={handleClick}>{active ? "Active" : "Inactive"}</button>
     </>
-
   );
 };
+
 
 export default App;
