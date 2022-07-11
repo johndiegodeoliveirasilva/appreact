@@ -1,26 +1,25 @@
 import React from 'react';
-import Footer from './Footer';
-import Form from './Form/Form';
-import Header from './Header';
-
-const Teste = () => {
-  const active = false;
-  if (active) {
-    return <p>Teste</p>;
-  } else {
-    return null;
-  }
-}
+import Header from './Header'
+import Home from './Home'
+import Products from './Products';
+// Replique a interface como a apresentada na aula
+// Utilize o array abaixo para mostrar os produtos
+// Quebre em componentes o que precisar ser reutilizado
+// Dica: const { pathname } = window.location; (puxa para o caminho da URL)
 
 const App = () => {
+  let Pagy = Home;
+  const { pathname} = window.location
+  if (pathname === '/products') {
+    Pagy = Products
+  } else {
+    Pagy = Home;
+  }
   return (
-    <>
-      <Teste/>
-      <Header/>
-      <Form/>
-      <Footer/>
-    </>
-
+    <section>
+      <Header />
+      <Pagy />
+    </section>
   );
 };
 
