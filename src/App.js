@@ -1,33 +1,24 @@
 import React from 'react';
-import Product from './Product';
 
 const App = () => {
-  const [datas, setData] = React.useState(null);
-  const [loading, setLoading] = React.useState(null);
+  const [count, setCount] = React.useState(0);
 
-  async function handleClick(event) {
-    const response = await fetch(
-      `https://ranekapi.origamid.dev/json/api/produto/${event.target.innerText}`
-    )
-    const json = await response.json();
-    setData(json)
-    setLoading(false);
-  }
+  const [data, setData] = React.useState(null);
+
+
+  React.useEffect(()=> {
+    fetch('https://ranekapi.origamid.dev/json/api/produto/notebook')
+      .then((response) => response.json())
+      .then((json) => setData(json));
+  }, [data]);
 
   return (
     <>
-      <button style={{ margin: '.5rem'}} onClick={handleClick}>
-        notebook
-      </button>
-      <button style={{ margin: '.5rem'}} onClick={handleClick}>
-        smartphone
-      </button>
-      <button style={{ margin: '.5rem'}} onClick={handleClick}>
-        tablet
-      </button>
-      {loading && <p>Carregando...</p>}
-      {!loading && datas && <Product datas={datas}/>}
-
+    {data && <div>
+      <h1>{data.nome}</h1>
+      <p>{data.preco * count}</p>
+      </div>}
+    <button onClick={() => setCount(count + 1 )}>{count}</button>
     </>
   );
 };
